@@ -11,10 +11,13 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os, environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env()
+environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -25,7 +28,7 @@ SECRET_KEY = 'django-insecure--63c3olz@3ulpb@6-7hc96pdt=pu&x!@htc5+)x41&5ki%c3iv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +43,7 @@ INSTALLED_APPS = [
     'server',
     'rest_framework', #DRF
     'corsheaders', #CORS
+    'storages', #S3
 ]
 
 MIDDLEWARE = [
@@ -131,8 +135,36 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# S3 Storage
+if DEBUG:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+else:
+    AWS_ACCESS_KEY_ID = env('MY_AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = env('MY_AWS_SECRET_ACCESS_KEY')
+    AWS_REGION = 'ap-northeast-2'
+    AWS_STORAGE_BUCKET_NAME = 'BUCKET_NAME' # 버킷 이름
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (
+        AWS_STORAGE_BUCKET_NAME, AWS_REGION)
+    AWS_S3_OBJECT_PARAMETERS = {
+        'CacheControl': 'max-age=86400',
+    }
+    AWS_DEFAULT_ACL = 'public-read'
+
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, 'static')
+    STATICFILES_STORAGE = 'APP_NAME.storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+
+    MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, 'media')
+    DEFAULT_FILE_STORAGE = 'APP_NAME.storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
