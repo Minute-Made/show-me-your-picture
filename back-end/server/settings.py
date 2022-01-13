@@ -48,6 +48,12 @@ INSTALLED_APPS = [
     'storages', #S3
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
 MIDDLEWARE = [
     #CORS
     'corsheaders.middleware.CorsMiddleware', 
