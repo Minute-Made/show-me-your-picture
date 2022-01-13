@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save  # 추가
 from django.dispatch import receiver   # 추가
@@ -17,7 +16,3 @@ class Profile(models.Model):
     def create_user_profile(sender, instance, created, **kwargs):        
         if created:          
             Profile.objects.create(user=instance)  
-    
-    @receiver(post_save, sender=User)  
-    def save_user_profile(sender, instance, **kwargs):        
-        instance.profile.save()
