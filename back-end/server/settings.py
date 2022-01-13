@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'server',
+    'account',
     'rest_framework', #DRF
+    'rest_framework.authtoken',
     'corsheaders', #CORS
     'storages', #S3
 ]
@@ -142,29 +144,29 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# S3 Storage
-if DEBUG:
-    STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# # S3 Storage
+# if DEBUG:
+#     STATIC_URL = '/static/'
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-else:
-    AWS_ACCESS_KEY_ID = env('MY_AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = env('MY_AWS_SECRET_ACCESS_KEY')
-    AWS_REGION = 'ap-northeast-2'
-    AWS_STORAGE_BUCKET_NAME = 'BUCKET_NAME' # 버킷 이름
-    AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (
-        AWS_STORAGE_BUCKET_NAME, AWS_REGION)
-    AWS_S3_OBJECT_PARAMETERS = {
-        'CacheControl': 'max-age=86400',
-    }
-    AWS_DEFAULT_ACL = 'public-read'
+#     MEDIA_URL = '/media/'
+#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# else:
+#     AWS_ACCESS_KEY_ID = env('MY_AWS_ACCESS_KEY_ID')
+#     AWS_SECRET_ACCESS_KEY = env('MY_AWS_SECRET_ACCESS_KEY')
+#     AWS_REGION = 'ap-northeast-2'
+#     AWS_STORAGE_BUCKET_NAME = 'BUCKET_NAME' # 버킷 이름
+#     AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (
+#         AWS_STORAGE_BUCKET_NAME, AWS_REGION)
+#     AWS_S3_OBJECT_PARAMETERS = {
+#         'CacheControl': 'max-age=86400',
+#     }
+#     AWS_DEFAULT_ACL = 'public-read'
 
-    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, 'static')
-    STATICFILES_STORAGE = 'APP_NAME.storages.StaticStorage'
-    STATICFILES_LOCATION = 'static'
+#     STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, 'static')
+#     STATICFILES_STORAGE = 'APP_NAME.storages.StaticStorage'
+#     STATICFILES_LOCATION = 'static'
 
-    MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, 'media')
-    DEFAULT_FILE_STORAGE = 'APP_NAME.storages.MediaStorage'
-    MEDIAFILES_LOCATION = 'media'
+#     MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, 'media')
+#     DEFAULT_FILE_STORAGE = 'APP_NAME.storages.MediaStorage'
+#     MEDIAFILES_LOCATION = 'media'
