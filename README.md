@@ -40,3 +40,7 @@
 ---
 ## KAKAO Login  
 ### [GET] http://127.0.0.1:8000/accounts/kakao/login/  
+[RESPONSE]   
+{  
+    "key": "5eeacaa5e81abf30799f6c38632389ceb87d7187"  
+}  
