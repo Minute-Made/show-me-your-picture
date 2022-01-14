@@ -28,8 +28,9 @@ function Login() {
         setUserStates(res.data.key);
       })
       .catch((err) => {
-        if(err.response.status==401 && err.response.data=="Unauthorized"){
-          alert("아이디 혹은 패스워드가 잘못되었습니다.");
+        // if(err.response.status==401 && err.response.data=="Unauthorized"){
+        if(err.response.status==401){
+          // alert("아이디 혹은 패스워드가 잘못되었습니다.");
           setError("아이디 혹은 패스워드가 잘못되었습니다.");
         }
         console.dir(err)

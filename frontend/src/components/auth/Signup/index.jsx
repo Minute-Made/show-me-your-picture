@@ -19,7 +19,7 @@ function Signup() {
       withCredentials: true,
     }).then((res) => {
         setUserStates(() => "isLogin");
-        localStorage.setItem("UserId", res.data.key);
+        localStorage.setItem("UserId", res.data.Token);
         history({
           pathname: "/main",
         })
