@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import {  userName } from "../atoms/atoms";
 import axios from "axios";
 export const useUser = () => {
-  const userToken = localStorage.getItem("ZakSimId");
+  const userToken = localStorage.getItem("UserId");
   const [username, setUsername] = useRecoilState(userName);
   useEffect(() => {
     if (userToken) {

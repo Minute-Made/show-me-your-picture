@@ -22,7 +22,7 @@ function Login() {
       .then((res) => {
         // sessionStorage.setItem("isAuthorized", "true");
         console.log(res)
-        localStorage.setItem("ZakSimId", res.data.key);
+        localStorage.setItem("UserId", res.data.Token);
         // console.log()
         // localStorage.setItem("ZakSimId", res);
         setUserStates(res.data.key);
