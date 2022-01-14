@@ -47,7 +47,12 @@ function Signup() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const signupInfo = { nickname: e.target.name.value, id: e.target.id.value, password1: e.target.pwd1.value, password2: e.target.pwd2.value};
+    const signupInfo = { 
+      id: e.target.id.value, 
+      password: e.target.pwd1.value, 
+      nickname: e.target.name.value, 
+      // password2: e.target.pwd2.value
+    };
     return signup(signupInfo);
   };
   const goBack = () => {
@@ -90,13 +95,13 @@ function Signup() {
               name="pwd1"
               placeholder="비밀번호"
             />
-            <S.InputPW
+            {/* <S.InputPW
               required
               type="password"
               id="pwd2"
               name="pwd2"
               placeholder="비밀번호"
-            />
+            /> */}
           </S.InputWrapper>
           <div style={{color: 'red', textAlign: 'center'}}>{error}</div>
           <S.YB />

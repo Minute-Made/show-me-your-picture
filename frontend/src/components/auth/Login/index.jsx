@@ -14,7 +14,7 @@ function Login() {
   const login = async (loginInfo) => {
     await axios({
       method: "post",
-      url: "http://localhost:8000/accounts/rest-auth/login/",
+      url: "http://localhost:8000/accounts/login/",
       // url: "/accounts/rest-auth/login/",
       data: loginInfo,
       withCredentials: true,
@@ -38,7 +38,10 @@ function Login() {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    const loginInfo = { "username": e.target.id.value, "password": e.target.pwd.value };
+    const loginInfo = { 
+      "id": e.target.id.value,
+      "password": e.target.pwd.value 
+    };
     console.log(loginInfo)
     return login(loginInfo);
   };
