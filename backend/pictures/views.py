@@ -1,4 +1,3 @@
-from email.mime import image
 from .serializers import PublicPictureSerializer, PrivatePictureSerializer
 from .models import Picture, PicturePrivacy, User
 from rest_framework.views import APIView
