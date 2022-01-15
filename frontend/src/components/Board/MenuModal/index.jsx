@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 // import modalBG from "../GlobalStyle"
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import * as S from "../style";
@@ -9,7 +8,7 @@ import * as S from "../style";
 function MenuModal(props) {
     return(<>
             {/* <modalBG menuModal={menuModal}></modalBG> */}
-    <S.BlackBG open={props.open}></S.BlackBG>
+
     <S.MenuModal open={props.open}>
         <S.MMMenu  open={props.open}>내 정보 수정</S.MMMenu>
         <S.MMMenu  open={props.open}>나의 컬렉션</S.MMMenu>

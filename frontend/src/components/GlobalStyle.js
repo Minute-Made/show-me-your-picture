@@ -15,19 +15,6 @@ const GlobalStyleWrapper = createGlobalStyle`
     margin: 0;
   }
 `;
-export const BlackBG= styled.div`
-${props =>
-    props.menuModal &&
-    css`
-    height: 100%;
-    width: 100%;
-    background-color: rgba(34, 34, 34, 0.7);
-    // position:fixed;
-    position: fixed;
-    transition: all .4s;
-    transform:translateX()
-    `}
-`
 const Container = styled.div`
   position: relative;
   background-color: #e6e9ec;
