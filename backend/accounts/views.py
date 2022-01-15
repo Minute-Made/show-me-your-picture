@@ -10,6 +10,8 @@ from allauth.socialaccount.providers.kakao import views as kakao_view
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from dj_rest_auth.registration.views import SocialLoginView
 from json.decoder import JSONDecodeError
+from .serializers import UserProfileSerizlizer
+from .models import Profile
 
 from django.contrib.auth.models import User
 from . import models
@@ -91,3 +93,17 @@ class KakaoLogin(SocialLoginView):
     adapter_class = kakao_view.KakaoOAuth2Adapter
     client_class = OAuth2Client
     callback_url = KAKAO_CALLBACK_URI            
+
+class UserProfile(APIView):
+    def get(self,request,user_id):
+        # user= request.user
+        user= User.objects.get(id=user_id)
+        # user_token = request.auth
+        if user is not None:
+            profile = Profile.objects.get(user=user)
+            serializer=UserProfileSerizlizer(profile)
+            return Response(serializer.data)
+        else:
+            return Response(status=401)
+        
+
