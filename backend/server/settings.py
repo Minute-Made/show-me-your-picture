@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'pictures',
     'storages', #S3
     'corsheaders', #CORS
+    'notifications',
+    'pictures',
     #DRF
     'rest_framework', 
     'rest_framework.authtoken',
