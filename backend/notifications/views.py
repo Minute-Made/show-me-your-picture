@@ -42,7 +42,7 @@ class NotificationView(APIView):
         serializer = NotificationSerializer(notifications, many=True)
         return JsonResponse(serializer.data, safe=False)
 
-    def post(self, request):
+    def post(self, request, id):
         try:
             user = User.objects.get(id=request.POST['requestee-id'])
             my_pic_num = request.POST['my_pic_num']
