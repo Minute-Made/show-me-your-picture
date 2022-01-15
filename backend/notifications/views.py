@@ -17,7 +17,7 @@ from rest_framework.parsers import JSONParser
 from notifications.models import Notification
 from notifications.serializers import NotificationSerializer
 from django.contrib.auth.models import User
-from . import models
+from pictures.models import Picture
 from pathlib import Path
 import os, environ, requests
 
@@ -42,9 +42,19 @@ class NotificationView(APIView):
         serializer = NotificationSerializer(notifications, many=True)
         return JsonResponse(serializer.data, safe=False)
 
-
+    def post(self, request):
+        try:
+            user = User.objects.get(id=request.POST['requestee-id'])
+            my_pic_num = request.POST['my_pic_num']
+            requestor_pic = Picture.objects.get(picture=request.POST['requestor-pic-url'])
+        except:
+            return JsonResponse({'err_msg': "Invalid Request Parameters"}, status=status.HTTP_400_BAD_REQUEST)
         
-    # def update():
+        notification = Notification.objects.create(user=user, my_pic_num=my_pic_num, requestor_pic=requestor_pic)
+        notification.save()
 
-    # def delete():
+    # def put(self, request, id, ):
+
+
+    # def delete(self, request, id):
 

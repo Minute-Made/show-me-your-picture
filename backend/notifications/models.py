@@ -11,7 +11,6 @@ class Notification(models.Model):
     requestor_pic = models.ForeignKey(Picture, on_delete=models.CASCADE)
     my_pic_id = models.IntegerField()
     check_status = models.BooleanField(default=False)
-    accept_status = models.BooleanField(default=False)
 
     def __str__(self):
         return f'id={self.id}, requestee={self.requestee.id}, requestor_pic={self.requestor_pic.id}, my_pic_id={self.my_pic_id} check_status={self.check_status}, accept_status={self.accept_status}'
