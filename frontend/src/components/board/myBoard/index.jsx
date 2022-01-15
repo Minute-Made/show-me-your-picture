@@ -1,5 +1,7 @@
 import React,{  useEffect,useState } from "react";
+
 import Img from "../../../assets/sampleImg.png";
+import PhotoModal from "../PhotoModal";
 import * as S from "./style";
 import axios from "axios";
 import config from "../../../config/config";
@@ -46,6 +48,7 @@ const MyBoard = (props) => {
                     <S.Title>{data.title}</S.Title>
                   </S.PostContainer>
                 ) } ) }
+
 
     </S.Container>
   );

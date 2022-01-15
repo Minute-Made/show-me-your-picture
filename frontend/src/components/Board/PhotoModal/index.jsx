@@ -1,7 +1,24 @@
 import React from "react";
 
-const PhotoModal = () => {
-  return <div></div>;
+import * as S from "./style";
+
+const PhotoModal = (props) => {
+  return (
+    <>
+      {props.showModal ? (
+        <S.Background>
+          <S.CloseIcon onClick={props.closeModal}>
+            <i className="fas fa-times"></i>
+          </S.CloseIcon>
+          <S.PhotoModal>
+            <S.PhotoBox>{/* <img /> */}</S.PhotoBox>
+            <S.ContentBox></S.ContentBox>
+          </S.PhotoModal>
+        </S.Background>
+      ) : null}
+    </>
+  );
+
 };
 
 export default PhotoModal;

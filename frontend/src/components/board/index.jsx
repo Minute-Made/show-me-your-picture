@@ -13,8 +13,10 @@ import { userState } from "../../atoms/atoms.js";
 import ExBoard from "./ExBoard";
 
 function Home() {
+
   const params = useParams();
 //   console.dir(params.userPk)
+
   const [open, setOpen] = useState(false);
   const [openBG, setOpenBG] = useState(false);
   const [plusModal, setPlusModal] = useState(false);
@@ -34,11 +36,13 @@ function Home() {
     setPlusModal(!plusModal);
     setOpenBG(!openBG);
   };
+
   return (
     <div style={{ diplay: "relative" }}>
       <S.BlackBG openBG={openBG}></S.BlackBG>
       {plusModal && <AddModal  params={params}></AddModal>}
       
+
       <MenuModal open={open}></MenuModal>
       <div
         style={{
@@ -60,6 +64,7 @@ function Home() {
         </div>
         <S.TitleWrapper>
           <S.Title>김지성님의 흑역사진첩</S.Title>     
+
           <S.Info>이것은 매우 간단한 한줄 소개</S.Info>
         </S.TitleWrapper>
       </S.TitleContainer>
@@ -81,6 +86,7 @@ function Home() {
           <i className="fas fa-plus"></i>
         </S.PlusButton>
       </S.FixedAlign>)}
+
 
     </div>
   );
