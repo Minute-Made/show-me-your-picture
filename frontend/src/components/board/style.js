@@ -255,3 +255,15 @@ export const ExTab = styled.div`
       background-color:#f4f4f4 ;
     `}
 `
+export const Logout = styled.div`
+  width: 20%;
+  height: 24px;
+  background-color: #FFFDA2;
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  cursor:pointer;
+  justify-content: flex-end;
+  padding: 4px;
+  margin-right: 6%;
+`;
