@@ -17,8 +17,8 @@ class PicturesView(APIView):
         elif request.user.is_anonymous:
             private_pictures = Picture.objects.filter(user=user)
         else :
-            public_pictures = Picture.objects.filter(user=user).filter(exchange_user=user)
-            private_pictures = Picture.objects.filter(user=user).exclude(exchange_user=user)
+            public_pictures = Picture.objects.filter(user=user).filter(exchange_user=request.user)
+            private_pictures = Picture.objects.filter(user=user).exclude(exchange_user=request.user)
         public_serializer = PublicPictureSerializer(public_pictures, many=True)
         private_serializer = PrivatePictureSerializer(private_pictures, many=True)
         return JsonResponse(public_serializer.data + private_serializer.data, safe=False, json_dumps_params=json_dumps_params)
