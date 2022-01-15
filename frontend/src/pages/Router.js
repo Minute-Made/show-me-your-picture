@@ -20,7 +20,7 @@ function Router() {
         <Route path="/auth/signup" element={<Signup />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/" element={<Splash />} />
-        {/* <Route path="/main" element={<Home/>}/> */}
+        <Route path="/home/:userPk" element={<Home />} />
       </Routes>
     );
 
@@ -29,7 +29,7 @@ function Router() {
       <Route path="/" element={<Splash />} />
       <Route path="/auth/signup" element={<Signup />} />
       <Route path="/auth/login" element={<Login />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/home/:userPk" element={<Home />} />
       {/* <Route path="/main/:userPk/:postPk" element={<Detail/>}/> */}
     </Routes>
   );

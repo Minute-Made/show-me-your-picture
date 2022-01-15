@@ -6,13 +6,15 @@ import * as S from "../style";
 // import { userState } from "../../atoms/atoms.js";
 
 function MenuModal(props) {
-  return (
-    <>
-      <S.MenuModal open={props.open}>
-        <S.MMMenu open={props.open}>내 정보 수정</S.MMMenu>
-        <S.MMMenu open={props.open}>나의 컬렉션</S.MMMenu>
-      </S.MenuModal>
-    </>
-  );
+    return(<>
+            {/* <modalBG menuModal={menuModal}></modalBG> */}
+
+    <S.MenuModal open={props.open}>
+        <S.MMMenu  open={props.open}>내 정보 수정</S.MMMenu>
+        <S.MMMenu  open={props.open}>나의 컬렉션</S.MMMenu>
+    </S.MenuModal>
+    </>)
+
 }
 export default MenuModal;
+
