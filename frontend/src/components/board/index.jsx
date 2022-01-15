@@ -13,9 +13,8 @@ import { userState } from "../../atoms/atoms.js";
 import ExBoard from "./ExBoard";
 
 function Home() {
-
   const params = useParams();
-//   console.dir(params.userPk)
+  //   console.dir(params.userPk)
 
   const [open, setOpen] = useState(false);
   const [openBG, setOpenBG] = useState(false);
@@ -40,8 +39,9 @@ function Home() {
   return (
     <div style={{ diplay: "relative" }}>
       <S.BlackBG openBG={openBG}></S.BlackBG>
-      {plusModal && <AddModal  params={params}></AddModal>}
-      
+
+      {plusModal && <AddModal params={params}></AddModal>}
+
       <MenuModal open={open}></MenuModal>
       <div
         style={{
@@ -62,7 +62,7 @@ function Home() {
           <img src={profImgF} style={{ width: "100%" }}></img>
         </div>
         <S.TitleWrapper>
-          <S.Title>김지성님의 흑역사진첩</S.Title>     
+          <S.Title>김지성님의 흑역사진첩</S.Title>
 
           <S.Info>이것은 매우 간단한 한줄 소개</S.Info>
         </S.TitleWrapper>
@@ -76,16 +76,15 @@ function Home() {
         </S.ExTab>
       </S.TabWrapper>
 
-      {tab == "myBoard" && <MyBoard params={params}/>}
+      {tab == "myBoard" && <MyBoard params={params} />}
       {tab != "myBoard" && <ExBoard params={params} />}
-      {tab == "myBoard" && (      
-      <S.FixedAlign plusModal={plusModal}>
-
-        <S.PlusButton onClick={plusToggle} plusModal={plusModal}>
-          <i className="fas fa-plus"></i>
-        </S.PlusButton>
-      </S.FixedAlign>)}
-
+      {tab == "myBoard" && (
+        <S.FixedAlign plusModal={plusModal}>
+          <S.PlusButton onClick={plusToggle} plusModal={plusModal}>
+            <i className="fas fa-plus"></i>
+          </S.PlusButton>
+        </S.FixedAlign>
+      )}
     </div>
   );
 }
