@@ -10,7 +10,8 @@ function AddModal(props) {
     <>  
         <S.ModalContainer>
             <S.ModalBG plusModal={props.plusModal}>
-                <div>사진을 설명해주세요</div>
+                <S.Title>사진을 설명해주세요</S.Title>
+                {/* <S.Title>사진을 설명해주세요</S.Title> */}
             </S.ModalBG>
         </S.ModalContainer>
     </>)

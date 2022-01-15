@@ -131,7 +131,7 @@ ${props =>
     animation-name: ${({ open }) => open && opacity};
 `
 export const BlackBG= styled.div`
-z-index: 2;
+z-index: 6;
 ${props =>
     props.openBG &&
     css`
@@ -199,7 +199,7 @@ export const FixedAlign = styled.div`
     props.plusModal &&
     css`
       bottom:10vh;
-
+      z-index:30;
     `}
 `
 export const MMMenu = styled.div`
