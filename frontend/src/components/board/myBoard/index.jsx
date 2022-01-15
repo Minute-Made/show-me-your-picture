@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Img from "../../../assets/sampleImg.png";
+import PhotoModal from "../PhotoModal";
 import * as S from "./style";
 
-const MyBoard = () => {
+const MyBoard = (props) => {
+  const [showModal, setShowModal] = useState(false);
+  const openModal = () => {
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <S.Container>
-      {/* <S.Tab>내 사진첩</S.Tab> */}
-      <S.PostContainer>
+      <S.PostContainer onClick={openModal}>
         <S.ImageContainer>
           <img
             src={Img}
@@ -50,6 +58,9 @@ const MyBoard = () => {
         </S.ImageContainer>
         <S.Title>헤이리_01</S.Title>
       </S.PostContainer>
+
+      {/* <S.BlackBG /> */}
+      <PhotoModal showModal={showModal} closeModal={closeModal} />
     </S.Container>
   );
 };
