@@ -41,11 +41,11 @@ class NotificationView(APIView):
         requestee = User.objects.get(id=id)
         selected_notification = Notification.objects.filter(requestee=requestee)
         selected_notification.update(check_status=True)
-        return Response("Status Updated!", status=200)
+        return JsonResponse({"success_msg":"Status Updated!"}, status=200)
 
     def delete(self, request, id):
         selected_notification = Notification.objects.get(id=id)
         selected_notification.delete()
-        return Response("Delete completed!", status=200)
+        return JsonResponse({"success_msg":"Delete completed!"}, status=200)
       
 
