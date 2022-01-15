@@ -8,6 +8,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=20, blank=True)
     description = models.CharField(max_length=100, blank=True)
+    gender = models.CharField(max_length=1, blank=True)
 
     def __str__(self):
         return f'userid={self.user.id}, username={self.user.username}, nickname={self.nickname}, description={self.description}'
@@ -16,3 +17,4 @@ class Profile(models.Model):
     def create_user_profile(sender, instance, created, **kwargs):        
         if created:          
             Profile.objects.create(user=instance)  
+            
