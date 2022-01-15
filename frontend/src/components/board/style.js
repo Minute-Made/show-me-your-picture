@@ -206,3 +206,47 @@ export const MMMenu = styled.div`
       display:flex;
     `}
 `
+export const TabWrapper = styled.div`
+    display:flex;
+    width: 88%;
+    height: 42px;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 20px;
+`
+export const MyTab = styled.div`
+    width: 40%;
+    height: 42px;
+    background-color: #909090;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    box-shadow: 2px -2px 2px rgba(0, 0, 0, 0.25);
+    font-family: 'NeoDunggeunmo Pro';
+    cursor: pointer;
+    ${props =>
+    props.tab == 'myBoard' &&
+    css`
+      background-color: #f4f4f4;
+    `}
+`
+export const ExTab = styled.div`
+    cursor: pointer;
+    width: 40%;
+    height: 42px;
+    background-color: #909090;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px -2px 2px rgba(0, 0, 0, 0.25);
+    font-size: 0.8rem;
+    font-family: 'NeoDunggeunmo Pro';
+    ${props =>
+    props.tab != 'myBoard' &&
+    css`
+      background-color:#f4f4f4 ;
+    `}
+`
