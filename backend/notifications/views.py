@@ -54,15 +54,16 @@ class NotificationView(APIView):
         notification.save()
 #notificatin id put 요청
     def put(self, request, id):
-        selected_notification = Notification.objects.get(id=id)
-        selected_notification.check_status =True
+        requestee = User.objects.get(id=id)
+        selected_notification = Notification.objects.filter(requestee=requestee)
+        selected_notification.update(check_status=True)
         return Response("Status Updated!", status=200)
 
 
 #delete 요청 notification id 실어서
     def delete(self, request, id):
         selected_notification = Notification.objects.get(id=id)
-        selected_notification.remove()
+        selected_notification.delete()
         return Response("Delete completed!", status=200)
 
         
