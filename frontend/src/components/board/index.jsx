@@ -11,10 +11,26 @@ import MyBoard from "./MyBoard/index";
 // import { useUser } from "../../../hooks/useUser";
 import { userState } from "../../atoms/atoms.js";
 import ExBoard from "./ExBoard";
+import config from "../../config/config.js"
 
 function Home() {
   const params = useParams();
-  //   console.dir(params.userPk)
+  const [nickname, setNick] = useState(false);
+  const [gender, setGender] = useState(false);
+  const [description, setDesc] = useState(false);
+//   console.dir(params.userPk)
+  const getProfile = async () =>  {
+    await axios.get( config.BASE_URL+ "/accounts/" + params.userPk)
+  .then((res)=> {
+    console.log(res.data)
+    setNick(res.data.nickname)
+    setGender(res.data.gender)
+    setDesc(res.data.description)
+  })
+  }
+  useEffect(async() => {
+    await getProfile();
+}, []);
 
   const [open, setOpen] = useState(false);
   const [openBG, setOpenBG] = useState(false);
@@ -62,9 +78,8 @@ function Home() {
           <img src={profImgF} style={{ width: "100%" }}></img>
         </div>
         <S.TitleWrapper>
-          <S.Title>김지성님의 흑역사진첩</S.Title>
-
-          <S.Info>이것은 매우 간단한 한줄 소개</S.Info>
+          <S.Title>{nickname}님의 흑역사진첩</S.Title>     
+          <S.Info>{description}</S.Info>
         </S.TitleWrapper>
       </S.TitleContainer>
       <S.TabWrapper>
