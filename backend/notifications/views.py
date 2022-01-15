@@ -1,35 +1,18 @@
-from urllib import response
 # from rest_framework.decorators import detail_route
-from rest_framework import viewsets
-from rest_framework import renderers
-from notifications import serializers
 from .models import Notification
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
 from django.http import JsonResponse
-from django.shortcuts import redirect
-from rest_framework.parsers import JSONParser
 from notifications.models import Notification
 from notifications.serializers import NotificationSerializer
 from django.contrib.auth.models import User
 from pictures.models import Picture
-from pathlib import Path
-import os, environ, requests
+from django.http import JsonResponse
 
-class JSONResponse(HttpResponse):
-    """
-    콘텐츠를 JSON으로 변환한 후 HttpResponse 형태로 반환합니다.
-    """
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
-
+json_dumps_params = {'ensure_ascii':False}
 
 class NotificationView(APIView):
     def get(self, request, id):
@@ -40,31 +23,29 @@ class NotificationView(APIView):
         
         notifications = Notification.objects.filter(requestee=user)
         serializer = NotificationSerializer(notifications, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return JsonResponse(serializer.data, safe=False, json_dumps_params=json_dumps_params)
 
     def post(self, request, id):
         try:
-            user = User.objects.get(id=request.POST['requestee-id'])
-            my_pic_num = request.POST['my_pic_num']
-            requestor_pic = Picture.objects.get(picture=request.POST['requestor-pic-url'])
+            user = User.objects.get(id=request.data['requestee_id'])
+            requestee_pic_id = request.data['requestee_pic_id']
+            requestor_pic = Picture.objects.get(id=request.data['requestor_pic_id'])
         except:
             return JsonResponse({'err_msg': "Invalid Request Parameters"}, status=status.HTTP_400_BAD_REQUEST)
         
-        notification = Notification.objects.create(user=user, my_pic_num=my_pic_num, requestor_pic=requestor_pic)
+        notification = Notification.objects.create(requestee=user, my_pic_id=requestee_pic_id, requestor_pic=requestor_pic)
         notification.save()
-#notificatin id put 요청
+        return JsonResponse({'success_msg': 'exchange request posted'}, status=status.HTTP_200_OK)
+
     def put(self, request, id):
         requestee = User.objects.get(id=id)
         selected_notification = Notification.objects.filter(requestee=requestee)
         selected_notification.update(check_status=True)
         return Response("Status Updated!", status=200)
 
-
-#delete 요청 notification id 실어서
     def delete(self, request, id):
         selected_notification = Notification.objects.get(id=id)
         selected_notification.delete()
         return Response("Delete completed!", status=200)
-
-        
+      
 
