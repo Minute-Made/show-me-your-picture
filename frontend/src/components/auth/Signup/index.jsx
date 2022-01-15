@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -10,7 +10,8 @@ function Signup() {
   const [ userStates, setUserStates ] = useRecoilState(userState);
   // const setUser = useSetRecoilState(userState);
   const [error, setError] = useState();
-
+  const userToken = localStorage.getItem("UserId");
+  const [user_id, setUser_id ]= useState();
   const signup = async (signupInfo) => {
     axios({
       method: "post",
@@ -19,10 +20,8 @@ function Signup() {
       withCredentials: true,
     }).then((res) => {
         setUserStates(() => "isLogin");
-        localStorage.setItem("UserId", res.data.Token);
-        history({
-          pathname: "/main",
-        })
+        localStorage.setItem("UserId", 'Token ' + res.data.Token);
+        setUser_id(res.data.user_id)
       }).catch((err) => {
         var key = Object.getOwnPropertyNames(err.response.data)
         console.log(key)
@@ -44,7 +43,15 @@ function Signup() {
           }
         });
     };
-
+    useEffect(() => {
+      // if(userStates != "none"){
+      if(userToken){
+        // console.log(user_id)
+        history({
+          pathname: `/home/${user_id}`,
+        })
+      }
+    })
   const onSubmit = (e) => {
     e.preventDefault();
     const signupInfo = { 
