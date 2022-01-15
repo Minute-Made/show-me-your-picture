@@ -5,7 +5,7 @@ import * as S from "./style";
 const MyBoard = () => {
   return (
     <S.Container>
-      <S.Tab>내 사진첩</S.Tab>
+      {/* <S.Tab>내 사진첩</S.Tab> */}
       <S.PostContainer>
         <S.ImageContainer>
           <img

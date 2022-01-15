@@ -17,8 +17,6 @@ export const Container = styled.div`
   row-gap: 1rem;
   column-gap: 1rem;
   align-items: space-between;
-
-  z-index: 2;
 `;
 
 export const Tab = styled.div`
