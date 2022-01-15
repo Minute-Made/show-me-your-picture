@@ -10,9 +10,7 @@ import * as S from "./style";
 
 
 function AddModal( props ) {
-    // const [files, setFiles] = useState('')
     const user_id = props.params.userPk
-
     // const location = browserHistory.getCurrentLocation();
     // const addPhoto = async () => {
     //     const formdata = new FormData();
