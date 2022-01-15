@@ -60,6 +60,7 @@ class NotificationView(APIView):
     def delete(self, request, id):
         selected_notification = Notification.objects.get(id=id)
         selected_notification.remove()
+        return Response("Delete completed!", status=200)
 
         
 
