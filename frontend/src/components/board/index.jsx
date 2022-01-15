@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import modalBG from "../GlobalStyle"
 import profImgF from "../../assets/profIMG.svg"
+import MenuModal from "./MenuModal/index"
 import { useRecoilValue, useRecoilState } from "recoil";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import * as S from "./style.js";
@@ -9,15 +11,13 @@ import { userState } from "../../atoms/atoms.js";
 
 function Home() {
     const [open, setOpen] = useState(false);
-    const [menuModal, setMenuModal] = useState(false);
+    const [tab, setTab] = useState('myBoard');
     const onToggle = () => {
         setOpen(!open)
-        setMenuModal(!menuModal)
     };
   return(
     <div style ={{diplay:'relative'}}>
-    <S.BlackBG menuModal={menuModal}></S.BlackBG>
-    <S.MenuModal menuModal={menuModal}></S.MenuModal>
+    <MenuModal open={open}></MenuModal>
     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-start'}}>
         <S.Menu  onClick={onToggle} open={open}>
             <span></span>
@@ -35,6 +35,9 @@ function Home() {
             <S.Info>이것은 매우 간단한 한줄 소개</S.Info>
         </S.TitleWrapper>
     </S.TitleContainer>
+    <S.FixedAlign><S.PlusButton><i className="fas fa-plus"></i></S.PlusButton></S.FixedAlign>
+
+
     </div>   
   )
 }

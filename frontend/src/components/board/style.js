@@ -94,29 +94,115 @@ export const Info = styled.div`
     font-family: 'NeoDunggeunmo Pro';
     color: #A7B0C0;
 `
+const opacity = keyframes`
+    0% {
+      opacity: 0;
+    //   transform: translateX(-50%);
+    }
+    15% {
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    //   transform: translateX(0);
+    }
+  `;
 export const MenuModal = styled.div`
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    div {
+        font-size: 0.8rem;
+        font-family: 'NeoDunggeunmo Pro';
+    }
 ${props =>
-        props.menuModal &&
+        props.open &&
         css`
     background-color: #eee;
     width: 180px;
     height:100%;
     position: absolute;
     // left: 0;
-
     `}
+    animation-duration: 0.8s;
+    animation-name: ${({ open }) => open && opacity};
 `
 export const BlackBG= styled.div`
 ${props =>
-    props.menuModal &&
+    props.open &&
     css`
     height: 100%;
     width: 100%;
     background-color: rgba(34, 34, 34, 0.7);
-    position:absolute;
-    transform:translateX()
+    position: absolute;
+    left:0;
     `}
 `
+
 export const YBTOP = styled.div`
     height: 20px;
+`
+export const PlusButton = styled.div`
+color:white;
+width: 3.75rem;
+height: 3.75rem;
+display: flex;
+border-radius: 60px;
+background:#8E806A;
+align-items: center;
+cursor: pointer;
+justify-content: center;
+font-size: 1.5rem;
+pointer-events: all;
+box-shadow: 2px 2px 3px #999;
+transition: all ease 1s;
+&:hover {
+  color:#8E806A;
+  background: #eee;
+  & i {
+    transform: rotate( 360deg );
+    transition: all ease 1s;
+    // color:red;
+  }
+}
+${props =>
+    props.open &&
+    css`
+      background: #ff6b6b;
+      &:hover {
+        background: #ff8787;
+      }
+      &:active {
+        background: #fa5252;
+      }
+      transform:  translate(-0%, 50%) rotate(45deg);
+    `}
+`;
+export const FixedAlign = styled.div`
+  width: 100%;
+  z-index:10;
+  max-width: 375px;
+  // height: 60px;
+  display: flex;
+  position: fixed;
+  margin: 0 auto;
+  position: fixed;
+  bottom: 10vh;
+  justify-content: center;
+  pointer-events: none;
+  transition: all ease 1s;
+  ${props =>
+    props.open &&
+    css`
+      bottom:50vh;
+    `}
+`
+export const MMMenu = styled.div`
+    display:none;
+  ${props =>
+    props.open &&
+    css`
+      display:flex;
+    `}
 `
