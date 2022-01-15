@@ -19,6 +19,7 @@ const GlobalStyleWrapper = createGlobalStyle`
 const Container = styled.div`
   position: relative;
   background-color: #e6e9ec;
+  // min-height: 100vh;
   // @media (min-width: 375px) {
     
   // }
@@ -28,7 +29,7 @@ const Body = styled.div`
   max-width: 375px;
   margin: 0 auto;
   background-color: #FFAB76;
-  min-height: 100vh;
+  // min-height: 100vh;
   // @media (min-width: 375px) {
     
   // }

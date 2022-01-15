@@ -9,10 +9,16 @@ import { userState } from "../../atoms/atoms.js";
 
 function Home() {
     const [open, setOpen] = useState(false);
-    const onToggle = () => setOpen(!open);
+    const [menuModal, setMenuModal] = useState(false);
+    const onToggle = () => {
+        setOpen(!open)
+        setMenuModal(!menuModal)
+    };
   return(
-    <>
-    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+    <div style ={{diplay:'relative'}}>
+    <S.BlackBG menuModal={menuModal}></S.BlackBG>
+    <S.MenuModal menuModal={menuModal}></S.MenuModal>
+    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-start'}}>
         <S.Menu  onClick={onToggle} open={open}>
             <span></span>
             <span></span>
@@ -29,7 +35,7 @@ function Home() {
             <S.Info>이것은 매우 간단한 한줄 소개</S.Info>
         </S.TitleWrapper>
     </S.TitleContainer>
-    </>   
+    </div>   
   )
 }
 export default Home;

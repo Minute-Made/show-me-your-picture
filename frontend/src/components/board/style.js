@@ -19,7 +19,7 @@ export const Menu = styled.div`
     position: relative;
     transition: all .4s;
     box-sizing: border-box;
-    margin-right: 6%;
+    margin-left: 6%;
     margin-top: 20px;
     cursor: pointer;
     &:hover span {
@@ -48,6 +48,9 @@ export const Menu = styled.div`
     ${props =>
         props.open &&
         css`
+        span {
+            background-color:#ff8787; 
+        }
         span:nth-of-type(1) {
             -webkit-transform : translateY(20px) rotate(-315deg);
             transform : translateY(9.5px) rotate(-315deg);
@@ -90,6 +93,29 @@ export const Info = styled.div`
     font-size: 0.75rem;
     font-family: 'NeoDunggeunmo Pro';
     color: #A7B0C0;
+`
+export const MenuModal = styled.div`
+${props =>
+        props.menuModal &&
+        css`
+    background-color: #eee;
+    width: 180px;
+    height:100%;
+    position: absolute;
+    // left: 0;
+
+    `}
+`
+export const BlackBG= styled.div`
+${props =>
+    props.menuModal &&
+    css`
+    height: 100%;
+    width: 100%;
+    background-color: rgba(34, 34, 34, 0.7);
+    position:absolute;
+    transform:translateX()
+    `}
 `
 export const YBTOP = styled.div`
     height: 20px;
