@@ -114,7 +114,14 @@ class UserProfile(APIView):
             serializer.save()
             return Response(serializer.data) 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+class UserView(APIView):
+    def get(self, request):
+        if request.user.is_anonymous:
+            return Response(status=401)
+        else:
+            return Response({"user_id":request.user.id})
+
 # class URL(APIView):
 #     def code_URL(self,request):
 #         #코드 암호화
