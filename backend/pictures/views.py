@@ -21,6 +21,7 @@ class PicturesView(APIView):
         image = request.FILES['image']
         if len(image) > 0:
             picture.image = image
+            print(picture.image)
             picture.save()
         serializer = PictureSerializer(picture)
         return JsonResponse(serializer.data)
