@@ -33,7 +33,7 @@ class NotificationView(APIView):
         except:
             return JsonResponse({'err_msg': "Invalid Request Parameters"}, status=status.HTTP_400_BAD_REQUEST)
         
-        notification = Notification.objects.create(requestee=user, my_pic_id=requestee_pic_id, requestor_pic=requestor_pic)
+        notification = Notification.objects.create(requestee=user, requestee_pic_id=requestee_pic_id, requestor_pic=requestor_pic)
         notification.save()
         return JsonResponse({'success_msg': 'exchange request posted'}, status=status.HTTP_200_OK)
 
@@ -44,7 +44,10 @@ class NotificationView(APIView):
         return JsonResponse({"success_msg":"Status Updated!"}, status=200)
 
     def delete(self, request, id):
-        selected_notification = Notification.objects.get(id=id)
+        try:
+            selected_notification = Notification.objects.get(id=id)
+        except:
+            return JsonResponse({'err_msg': "Invalid Request Parameters"}, status=status.HTTP_400_BAD_REQUEST)
         selected_notification.delete()
         return JsonResponse({"success_msg":"Delete completed!"}, status=200)
       
