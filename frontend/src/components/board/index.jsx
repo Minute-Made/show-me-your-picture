@@ -3,7 +3,7 @@ import axios from "axios";
 import modalBG from "../GlobalStyle";
 import profImgF from "../../assets/profIMG.svg";
 import MenuModal from "./MenuModal/index";
-import AddModal from "./PhotoModal/index";
+import AddModal from "./AddModal/index";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import * as S from "./style.js";
