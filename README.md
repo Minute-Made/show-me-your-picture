@@ -44,3 +44,17 @@
 {  
     "key": "5eeacaa5e81abf30799f6c38632389ceb87d7187"  
 }  
+
+## User Profile
+## [GET] http://127.0.0.1:8000/accounts/user_id/
+[RESPONSE]
+{
+    "nickname":"Abby","gender":"F","description":"hi"
+}
+
+## [PUT] http://127.0.0.1:8000/accounts/user_id/update
+
+[RESPONSE]
+{
+    "nickname":"change","gender":"F","description":"hi"
+}
