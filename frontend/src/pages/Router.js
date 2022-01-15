@@ -4,7 +4,7 @@ import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup/index.jsx";
 import Splash from "../components/auth/Splash";
 // import Test from "../components/test";
-// import Home from "../components/board/index.jsx";
+import Home from "../components/board/index.jsx";
 // import Detail from "../components/board/detail/index";
 // import Write from "../components/board/write/index";
 import { useRecoilState , useRecoilValue } from "recoil";
@@ -29,8 +29,8 @@ function Router() {
             <Route path="/" element={<Splash/>}/>
             <Route path="/auth/signup"  element={<Signup/>}/>
             <Route path="/auth/login"  element={<Login/>}/>
-      {/* <Route path="/main" element={<Home/>}/>
-      <Route path="/main/:userPk/:postPk" element={<Detail/>}/> */}
+          <Route path="/home" element={<Home/>}/>
+          {/* <Route path="/main/:userPk/:postPk" element={<Detail/>}/> */}
 
     </Routes>
         
