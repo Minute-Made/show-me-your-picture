@@ -17,8 +17,6 @@ export const Container = styled.div`
   row-gap: 1rem;
   column-gap: 1rem;
   align-items: space-between;
-
-  z-index: 2;
 `;
 
 export const Tab = styled.div`
@@ -57,4 +55,18 @@ export const Title = styled.div`
   width: 90%;
   font-family: "NeoDunggeunmo Pro";
   font-size: 0.8rem;
+`;
+
+export const BlackBG = styled.div`
+  ${(props) =>
+    props.openBack &&
+    css`
+      z-index: 20;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(34, 34, 34, 0.7);
+      position: fixed;
+      left: 0;
+      top: 0;
+    `}
 `;

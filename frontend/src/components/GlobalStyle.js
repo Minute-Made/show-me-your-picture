@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { css, createGlobalStyle } from "styled-components";
 
 const GlobalStyleWrapper = createGlobalStyle`
   *, *::before, *::after {
@@ -15,10 +15,11 @@ const GlobalStyleWrapper = createGlobalStyle`
     margin: 0;
   }
 `;
-
 const Container = styled.div`
   position: relative;
   background-color: #e6e9ec;
+  display:flex;
+  justify-content: center;
   // min-height: 100vh;
   // @media (min-width: 375px) {
     
@@ -27,9 +28,10 @@ const Container = styled.div`
 
 const Body = styled.div`
   max-width: 375px;
-  margin: 0 auto;
+  width: 100%;
+  // margin: 0 auto;
   background-color: #FFAB76;
-  // min-height: 100vh;
+  min-height: 100vh;
   // @media (min-width: 375px) {
     
   // }
