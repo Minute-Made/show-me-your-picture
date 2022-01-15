@@ -19,7 +19,7 @@ class Picture(models.Model):
     title = models.TextField(blank=True)
     description = models.TextField(blank=True)
     author = models.TextField(blank=True)
-    picture = models.ImageField(upload_to=date_upload_to)
+    picture = models.ImageField(upload_to=date_upload_to, blank=True)
     exchange_user = models.ManyToManyField(User, blank=True, related_name='exchange_pic', through='PicturePrivacy')
 
     def __str__(self):
