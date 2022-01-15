@@ -10,9 +10,8 @@ from allauth.socialaccount.providers.kakao import views as kakao_view
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from dj_rest_auth.registration.views import SocialLoginView
 from json.decoder import JSONDecodeError
-from .serializers import URLSerializer, UserProfileSerizlizer,DecodeURLSerializer
+from .serializers import  UserProfileSerizlizer
 from .models import Profile
-import base64
 
 from django.contrib.auth.models import User
 from . import models
@@ -122,27 +121,5 @@ class UserView(APIView):
         else:
             return Response({"user_id":request.user.id})
 
-# class URL(APIView):
-#     def code_URL(self,request):
-#         #코드 암호화
-#         user_id = request.user.id
-#         sitename = f'http://127.0.0.1:8000/accounts/{user_id}/'
-#         sitename_bytes = sitename .encode('ascii')
-#         sitename_base64 = base64.b64encode(sitename_bytes)
-#         sitename_base64_str = sitename_base64.decode('ascii')
-#         serialized_url = URLSerializer(sitename_base64_str,data= request.data)
 
-#         return Response(serialized_url.data)
-            
-#     def decode_URL(self,request):
-#         #받은 링크 디코딩
-#         #링크 받기
-#         #링크 초반이 /myfriend/이면
-#         sitename_base64_str  = 링크
-#         sitename_bytes = base64.b64decode(sitename_base64_str )
-#         sitename = sitename_bytes .decode('ascii')
-#         serialized_decoded_url = DecodeURLSerializer(sitename,data= request.data)
-
-#         return Response(serialized_decoded_url.data)
-        
 
