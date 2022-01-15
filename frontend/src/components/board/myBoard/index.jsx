@@ -1,8 +1,25 @@
 import React from "react";
 import Img from "../../../assets/sampleImg.png";
 import * as S from "./style";
+import axios from "axios";
+const MyBoard = (props) => {
+    const user_id = props.params.userPk
+    const userToken = localStorage.getItem("UserId");
+    // const getPhoto = async ({userToken, user_id}) => {
 
-const MyBoard = () => {
+    //     axios({
+    //       method: "get",
+    //       url: `http://localhost:8000/pictures/${user_id}/`,
+    //     //   url: `http://localhost:8000/pictures/`,
+
+    //       withCredentials: true,
+    //     }).then((res) => {
+    //         console.log(res)
+    //       })
+    //       .catch((err) => {
+    //         alert("작성 실패")
+    //         console.log(err)
+    //       })};
   return (
     <S.Container>
       {/* <S.Tab>내 사진첩</S.Tab> */}

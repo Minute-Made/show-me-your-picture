@@ -5,7 +5,7 @@ import profImgF from "../../assets/profIMG.svg";
 import MenuModal from "./MenuModal/index";
 import AddModal from "./AddModal/index";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import * as S from "./style.js";
 import MyBoard from "./MyBoard/index";
 // import { useUser } from "../../../hooks/useUser";
@@ -13,6 +13,8 @@ import { userState } from "../../atoms/atoms.js";
 import ExBoard from "./ExBoard";
 
 function Home() {
+  const params = useParams();
+  console.dir(params.userPk)
   const [open, setOpen] = useState(false);
   const [openBG, setOpenBG] = useState(false);
   const [plusModal, setPlusModal] = useState(false);
@@ -35,7 +37,8 @@ function Home() {
   return (
     <div style={{ diplay: "relative" }}>
       <S.BlackBG openBG={openBG}></S.BlackBG>
-      <AddModal  plusModal={plusModal}></AddModal>
+      {plusModal && <AddModal  params={params}></AddModal>}
+      
       <MenuModal open={open}></MenuModal>
       <div
         style={{
@@ -69,10 +72,11 @@ function Home() {
         </S.ExTab>
       </S.TabWrapper>
 
-      {tab == "myBoard" && <MyBoard />}
-      {tab != "myBoard" && <ExBoard />}
+      {tab == "myBoard" && <MyBoard params={params}/>}
+      {tab != "myBoard" && <ExBoard params={params} />}
       {tab == "myBoard" && (      
       <S.FixedAlign plusModal={plusModal}>
+
         <S.PlusButton onClick={plusToggle} plusModal={plusModal}>
           <i className="fas fa-plus"></i>
         </S.PlusButton>
