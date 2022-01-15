@@ -63,6 +63,16 @@
     "description":"hi"  
 }  
 
+### [GET] http://127.0.0.1:8000/accounts/getUser/  
+헤더 Authorization : Token 9aa239fe3d45422c2c7d03755eea9d9144b04574  
+[RESPONSE] - Token 유효할 경우  
+{  
+    "user_id": 2  
+}  
+  
+[RESPONSE] - Token 유효 X  
+401 Error
+
 ---
 ## Picture
 ### user_id에게 사진 업로드

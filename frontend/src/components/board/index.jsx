@@ -39,6 +39,7 @@ function Home() {
   return (
     <div style={{ diplay: "relative" }}>
       <S.BlackBG openBG={openBG}></S.BlackBG>
+
       {plusModal && <AddModal params={params}></AddModal>}
 
       <MenuModal open={open}></MenuModal>

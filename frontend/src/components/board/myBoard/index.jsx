@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 
 import PhotoModal from "../PhotoModal";
@@ -39,6 +40,7 @@ const MyBoard = (props) => {
   return (
     <S.Container>
       {/* <S.Tab>내 사진첩</S.Tab> */}
+
       {photo &&
         photo.map((data) => {
           return (
@@ -57,6 +59,7 @@ const MyBoard = (props) => {
             </S.PostContainer>
           );
         })}
+
     </S.Container>
   );
 };
