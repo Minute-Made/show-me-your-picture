@@ -47,6 +47,10 @@ INSTALLED_APPS = [
     'storages', #S3
     'corsheaders', #CORS
     'notifications',
+<<<<<<< HEAD
+
+=======
+>>>>>>> backend
     #DRF
     'rest_framework', 
     'rest_framework.authtoken',
