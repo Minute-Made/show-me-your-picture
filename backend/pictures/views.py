@@ -18,9 +18,9 @@ class PictureView(APIView):
         picture = Picture.objects.create(
             user=user, title=title, description=description, author=author
         )
-        images = request.FILES.getlist('images')
-        if len(images) > 0:
-            picture.image = images[0]
+        image = request.FILES['image']
+        if len(image) > 0:
+            picture.image = image
             picture.save()
-        serializer = PictureSerializer(picture, many=True)
+        serializer = PictureSerializer(picture)
         return JsonResponse(serializer.data)
