@@ -14,7 +14,7 @@ import ExBoard from "./ExBoard";
 
 function Home() {
   const params = useParams();
-  console.dir(params.userPk)
+//   console.dir(params.userPk)
   const [open, setOpen] = useState(false);
   const [openBG, setOpenBG] = useState(false);
   const [plusModal, setPlusModal] = useState(false);
