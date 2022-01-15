@@ -42,7 +42,6 @@ function Home() {
       <S.BlackBG openBG={openBG}></S.BlackBG>
       {plusModal && <AddModal  params={params}></AddModal>}
       
-
       <MenuModal open={open}></MenuModal>
       <div
         style={{
@@ -86,7 +85,6 @@ function Home() {
           <i className="fas fa-plus"></i>
         </S.PlusButton>
       </S.FixedAlign>)}
-
 
     </div>
   );
