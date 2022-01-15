@@ -32,10 +32,13 @@ function Home() {
     setPlusModal(!plusModal);
     setOpenBG(!openBG);
   };
+  const openBGHandler = () => {
+    setOpenBG(!openBG);
+  };
   return (
     <div style={{ diplay: "relative" }}>
       <S.BlackBG openBG={openBG}></S.BlackBG>
-      <AddModal  plusModal={plusModal}></AddModal>
+      <AddModal plusModal={plusModal}></AddModal>
       <MenuModal open={open}></MenuModal>
       <div
         style={{
@@ -56,7 +59,7 @@ function Home() {
           <img src={profImgF} style={{ width: "100%" }}></img>
         </div>
         <S.TitleWrapper>
-          <S.Title>김지성님의 흑역사진첩</S.Title>     
+          <S.Title>김지성님의 흑역사진첩</S.Title>
           <S.Info>이것은 매우 간단한 한줄 소개</S.Info>
         </S.TitleWrapper>
       </S.TitleContainer>
@@ -69,15 +72,15 @@ function Home() {
         </S.ExTab>
       </S.TabWrapper>
 
-      {tab == "myBoard" && <MyBoard />}
+      {tab == "myBoard" && <MyBoard onOpenBGHandler={openBGHandler} />}
       {tab != "myBoard" && <ExBoard />}
-      {tab == "myBoard" && (      
-      <S.FixedAlign plusModal={plusModal}>
-        <S.PlusButton onClick={plusToggle} plusModal={plusModal}>
-          <i className="fas fa-plus"></i>
-        </S.PlusButton>
-      </S.FixedAlign>)}
-
+      {tab == "myBoard" && (
+        <S.FixedAlign plusModal={plusModal}>
+          <S.PlusButton onClick={plusToggle} plusModal={plusModal}>
+            <i className="fas fa-plus"></i>
+          </S.PlusButton>
+        </S.FixedAlign>
+      )}
     </div>
   );
 }

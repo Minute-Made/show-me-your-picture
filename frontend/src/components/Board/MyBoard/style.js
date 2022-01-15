@@ -56,3 +56,17 @@ export const Title = styled.div`
   font-family: "NeoDunggeunmo Pro";
   font-size: 0.8rem;
 `;
+
+export const BlackBG = styled.div`
+  ${(props) =>
+    props.openBack &&
+    css`
+      z-index: 20;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(34, 34, 34, 0.7);
+      position: fixed;
+      left: 0;
+      top: 0;
+    `}
+`;
