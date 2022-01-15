@@ -21,6 +21,7 @@ export const Menu = styled.div`
     box-sizing: border-box;
     margin-left: 6%;
     margin-top: 20px;
+    z-index: 11;
     cursor: pointer;
     &:hover span {
         background-color: #fff;
@@ -111,6 +112,7 @@ export const MenuModal = styled.div`
     display: flex;
     // justify-content: center;
     align-items: center;
+    z-index: 9;
     flex-direction: column;
     div {
         font-size: 0.8rem;
@@ -129,8 +131,9 @@ ${props =>
     animation-name: ${({ open }) => open && opacity};
 `
 export const BlackBG= styled.div`
+z-index: 2;
 ${props =>
-    props.open &&
+    props.openBG &&
     css`
     height: 100%;
     width: 100%;
@@ -167,7 +170,7 @@ transition: all ease 1s;
   }
 }
 ${props =>
-    props.open &&
+    props.plusModal &&
     css`
       background: #ff6b6b;
       &:hover {
@@ -181,7 +184,7 @@ ${props =>
 `;
 export const FixedAlign = styled.div`
   width: 100%;
-  z-index:10;
+  z-index:5;
   max-width: 375px;
   // height: 60px;
   display: flex;
@@ -193,13 +196,15 @@ export const FixedAlign = styled.div`
   pointer-events: none;
   transition: all ease 1s;
   ${props =>
-    props.open &&
+    props.plusModal &&
     css`
-      bottom:50vh;
+      bottom:10vh;
+
     `}
 `
 export const MMMenu = styled.div`
     display:none;
+    z-index: 10;
   ${props =>
     props.open &&
     css`
