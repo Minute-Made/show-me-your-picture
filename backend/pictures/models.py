@@ -10,7 +10,7 @@ class Picture(models.Model):
       uuid_name = uuid4().hex
       extension = os.path.splitext(filename)[-1].lower()
       return '/'.join([
-        'Picture',
+        'image',
         timezone.now().strftime('%Y/%m/%d'),
         uuid_name + extension,
       ])
@@ -19,7 +19,7 @@ class Picture(models.Model):
     title = models.TextField(blank=True)
     description = models.TextField(blank=True)
     author = models.TextField(blank=True)
-    picture = models.ImageField(upload_to=date_upload_to)
+    image = models.ImageField(upload_to=date_upload_to)
     exchange_user = models.ManyToManyField(User, blank=True, related_name='exchange_pic', through='PicturePrivacy')
 
     def __str__(self):
