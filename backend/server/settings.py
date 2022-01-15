@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # my app
     'server',
     'accounts',
+    'pictures',
     'storages', #S3
     'corsheaders', #CORS
     #DRF
@@ -181,13 +182,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# # S3 Storage
-# if DEBUG:
-#     STATIC_URL = '/static/'
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# S3 Storage
+if DEBUG:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#     MEDIA_URL = '/media/'
-#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # else:
 #     AWS_ACCESS_KEY_ID = env('MY_AWS_ACCESS_KEY_ID')
 #     AWS_SECRET_ACCESS_KEY = env('MY_AWS_SECRET_ACCESS_KEY')
