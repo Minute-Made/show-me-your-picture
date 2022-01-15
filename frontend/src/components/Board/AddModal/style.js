@@ -20,6 +20,7 @@ export const ModalContainer = styled.div`
   display:flex;
   justify-content: center;
 `
+
 export const Button = styled.button`
   width: 70%;
   height: 56px;
@@ -44,6 +45,7 @@ export const Button = styled.button`
   filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1))
     drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.1));
 `;
+
 export const ModalBG = styled.div`
   width: 88%;
   /* margin: 0 auto; */
@@ -56,8 +58,8 @@ export const ModalBG = styled.div`
   position: absolute;
   z-index:7;
   border-radius:8px;
-
   display:flex;
+
 `
 export const Title = styled.div`
         font-size: 1.2rem;

@@ -1,4 +1,5 @@
 import React from "react";
+
 import * as S from "./style";
 
 const PhotoModal = (props) => {
@@ -17,6 +18,7 @@ const PhotoModal = (props) => {
       ) : null}
     </>
   );
+
 };
 
 export default PhotoModal;

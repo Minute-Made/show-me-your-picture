@@ -13,8 +13,10 @@ import { userState } from "../../atoms/atoms.js";
 import ExBoard from "./ExBoard";
 
 function Home() {
+
   const params = useParams();
 //   console.dir(params.userPk)
+
   const [open, setOpen] = useState(false);
   const [openBG, setOpenBG] = useState(false);
   const [plusModal, setPlusModal] = useState(false);
@@ -34,9 +36,7 @@ function Home() {
     setPlusModal(!plusModal);
     setOpenBG(!openBG);
   };
-  const openBGHandler = () => {
-    setOpenBG(!openBG);
-  };
+
   return (
     <div style={{ diplay: "relative" }}>
       <S.BlackBG openBG={openBG}></S.BlackBG>
@@ -62,7 +62,8 @@ function Home() {
           <img src={profImgF} style={{ width: "100%" }}></img>
         </div>
         <S.TitleWrapper>
-          <S.Title>김지성님의 흑역사진첩</S.Title>
+          <S.Title>김지성님의 흑역사진첩</S.Title>     
+
           <S.Info>이것은 매우 간단한 한줄 소개</S.Info>
         </S.TitleWrapper>
       </S.TitleContainer>

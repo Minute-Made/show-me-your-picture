@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+
 import axios from "axios";
 // import { browserHistory } from 'react-router';
+
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import * as S from "./style";
 // import { useUser } from "../../../hooks/useUser";
 // import { userState } from "../../atoms/atoms.js";
+
 
 function AddModal( props ) {
     // const [files, setFiles] = useState('')
@@ -85,6 +88,7 @@ function AddModal( props ) {
                 <input type="text" id="author" name="author"></input>
                 <S.Button type="submit">제출</S.Button>
                 </form>
+
                 {/* <S.Title>사진을 설명해주세요</S.Title> */}
             </S.ModalBG>
         </S.ModalContainer>
