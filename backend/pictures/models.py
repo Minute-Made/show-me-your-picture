@@ -11,7 +11,7 @@ class Picture(models.Model):
       extension = os.path.splitext(filename)[-1].lower()
       return '/'.join([
         'image',
-        timezone.now().strftime('%Y/%m/%d'),
+        timezone.now().strftime('%Y%m%d'),
         uuid_name + extension,
       ])
 
@@ -23,7 +23,7 @@ class Picture(models.Model):
     exchange_user = models.ManyToManyField(User, blank=True, related_name='exchange_pic', through='PicturePrivacy')
 
     def __str__(self):
-        return f'ownername = {self.user.username}, author = {self.author}, title = {self.title}, description = {self.description}'
+        return f'ownername = {self.user.username}, author = {self.author}, title = {self.title}, description = {self.description}, image = {self.image}'
 
 class PicturePrivacy(models.Model):
     picture = models.ForeignKey(Picture, on_delete=models.CASCADE)
