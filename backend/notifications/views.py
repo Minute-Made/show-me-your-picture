@@ -37,4 +37,15 @@ class NotificationView(APIView):
         notification.save()
         return JsonResponse({'success_msg': 'exchange request posted'}, status=status.HTTP_200_OK)
 
+    def put(self, request, id):
+        requestee = User.objects.get(id=id)
+        selected_notification = Notification.objects.filter(requestee=requestee)
+        selected_notification.update(check_status=True)
+        return Response("Status Updated!", status=200)
+
+    def delete(self, request, id):
+        selected_notification = Notification.objects.get(id=id)
+        selected_notification.delete()
+        return Response("Delete completed!", status=200)
+      
 

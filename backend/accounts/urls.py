@@ -8,5 +8,5 @@ urlpatterns = [
     path('kakao/callback/', views.kakao_callback, name='kakao_callback'),
     path('kakao/login/finish/', views.KakaoLogin.as_view(), name='kakao_login_todjango'),
     path('<int:user_id>/', views.UserProfile.as_view(),name='user_profile'),
-    path('<int:user_id>/update', views.UserProfile.as_view(),name='user_profile_update'),
+    path('getUser/', views.UserView.as_view(),name='user'),
 ]
