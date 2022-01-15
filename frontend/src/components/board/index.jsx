@@ -12,10 +12,11 @@ import MyBoard from "./MyBoard/index";
 import { userState } from "../../atoms/atoms.js";
 import ExBoard from "./ExBoard";
 
-function Home() {
+function Home() {  
+  const history = useNavigate();
   const params = useParams();
   //   console.dir(params.userPk)
-
+  const userToken = localStorage.getItem("UserId");
   const [open, setOpen] = useState(false);
   const [openBG, setOpenBG] = useState(false);
   const [plusModal, setPlusModal] = useState(false);
@@ -35,7 +36,22 @@ function Home() {
     setPlusModal(!plusModal);
     setOpenBG(!openBG);
   };
-
+  const logout = async () => {
+        localStorage.removeItem("UserId");
+        history({
+          pathname: '/',
+        })
+      // })
+  };
+  // useEffect(() => {
+  //   // if(userStates != "none"){
+  //   if(userToken == null){
+  //     // console.log(user_id)
+  //     history({
+  //       pathname: '/',
+  //     })
+  //   }
+  // })
   return (
     <div style={{ diplay: "relative" }}>
       <S.BlackBG openBG={openBG}></S.BlackBG>
@@ -47,7 +63,7 @@ function Home() {
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "flex-start",
+          justifyContent: "space-between",
         }}
       >
         <S.Menu onClick={onToggle} open={open}>
@@ -55,6 +71,7 @@ function Home() {
           <span></span>
           <span></span>
         </S.Menu>
+        <S.Logout onClick={logout}>Log Out</S.Logout>
       </div>
       <S.YBTOP></S.YBTOP>
       <S.TitleContainer>
