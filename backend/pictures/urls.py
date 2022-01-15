@@ -6,4 +6,5 @@ from . import views
 urlpatterns = [
     path('<int:id>/', views.PicturesView.as_view()),
     path('<int:id>/<int:pid>/', views.PictureView.as_view()),
+    path('exchange/', views.PicturePrivacyView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
