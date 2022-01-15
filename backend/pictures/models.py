@@ -23,7 +23,7 @@ class Picture(models.Model):
     exchange_user = models.ManyToManyField(User, blank=True, related_name='exchange_pic', through='PicturePrivacy')
 
     def __str__(self):
-        return f'ownername = {self.user.username}, author = {self.author}, title = {self.title}, description = {self.description}, image = {self.image}'
+        return f'id = {self.id}, user_id={self.user.id}, username = {self.user.username}, author = {self.author}, title = {self.title}, description = {self.description}, image = {self.image}'
 
 class PicturePrivacy(models.Model):
     picture = models.ForeignKey(Picture, on_delete=models.CASCADE)

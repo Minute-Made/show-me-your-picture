@@ -1,6 +1,6 @@
 from email.mime import image
 from .serializers import PublicPictureSerializer, PrivatePictureSerializer
-from .models import Picture, User
+from .models import Picture, PicturePrivacy, User
 from rest_framework.views import APIView
 from django.http import JsonResponse
 from rest_framework.response import Response
@@ -15,8 +15,8 @@ class PicturesView(APIView):
         elif request.user.is_anonymous:
             private_pictures = Picture.objects.filter(user=user)
         else :
-            public_pictures = Picture.objects.filter(user=user).filter(exchange_user=user)
-            private_pictures = Picture.objects.filter(user=user).exclude(exchange_user=user)
+            public_pictures = Picture.objects.filter(user=user).filter(exchange_user=request.user)
+            private_pictures = Picture.objects.filter(user=user).exclude(exchange_user=request.user)
         public_serializer = PublicPictureSerializer(public_pictures, many=True)
         private_serializer = PrivatePictureSerializer(private_pictures, many=True)
         return JsonResponse(public_serializer.data + private_serializer.data, safe=False)
@@ -35,6 +35,7 @@ class PicturesView(APIView):
             picture.save()
         serializer = PublicPictureSerializer(picture)
         return JsonResponse(serializer.data)
+
 class PictureView(APIView):
     def get(self, request, id, pid):
         picture = Picture.objects.get(id=pid)
@@ -44,3 +45,13 @@ class PictureView(APIView):
         picture = Picture.objects.get(id=pid)
         picture.delete()
         return Response("Delete completed!", status=200)
+
+class PicturePrivacyView(APIView):
+    def post(self, request):
+        requestor = User.objects.get(id=request.data['requestor_id'])
+        requestee = User.objects.get(id=request.data['requestee_id'])
+        requestor_pic = Picture.objects.get(id=request.data['requestor_pic_id'])
+        requestee_pic = Picture.objects.get(id=request.data['requestee_pic_id'])
+        PicturePrivacy.objects.create(picture=requestor_pic, user=requestee)
+        PicturePrivacy.objects.create(picture=requestee_pic, user=requestor)
+        return Response("Success!", status=200)
