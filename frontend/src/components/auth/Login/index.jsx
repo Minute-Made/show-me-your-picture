@@ -10,6 +10,7 @@ function Login() {
   const [ userStates, setUserStates ] = useRecoilState(userState);
   const [ error, setError ] = useState();
   const userToken = localStorage.getItem("UserId");
+  const [user_id, setUser_id ]= useState();
 
   const login = async (loginInfo) => {
     await axios({
@@ -22,10 +23,12 @@ function Login() {
       .then((res) => {
         // sessionStorage.setItem("isAuthorized", "true");
         console.log(res)
+        // localStorage.setItem("UserId", res.data.Token);
         localStorage.setItem("UserId", 'Token ' + res.data.Token);
+        setUser_id(res.data.user_id)
+        
         // console.log()
         // localStorage.setItem("ZakSimId", res);
-        setUserStates(res.data.key);
       })
       .catch((err) => {
         // if(err.response.status==401 && err.response.data=="Unauthorized"){
@@ -54,11 +57,12 @@ function Login() {
   useEffect(() => {
     // if(userStates != "none"){
     if(userToken){
+      // console.log(user_id)
       history({
-        pathname: "/home"
+        pathname: `/home/${user_id}`,
       })
     }
-  }, [userStates])
+  })
 
   return (
     <>
