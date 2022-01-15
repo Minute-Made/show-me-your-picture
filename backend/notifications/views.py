@@ -2,7 +2,6 @@ from urllib import response
 # from rest_framework.decorators import detail_route
 from rest_framework import viewsets
 from rest_framework import renderers
-
 from notifications import serializers
 from .models import Notification
 from django.http import HttpResponse
@@ -33,30 +32,18 @@ class JSONResponse(HttpResponse):
 
 
 class NotificationView(APIView):
-    def get(self, request):
+    def get(self, request, id):
         try:
-            user = User.objects.get(username=request.data['id'])
+            user = User.objects.get(id=id)
         except:
             return JsonResponse({'err_msg': 'user is not exists'}, status=status.HTTP_400_BAD_REQUEST)
         
-        notifications = Notification.filter(requestee=user)
+        notifications = Notification.objects.filter(requestee=user)
         serializer = NotificationSerializer(notifications, many=True)
         return JsonResponse(serializer.data, safe=False)
 
 
         
-    # def post(self, request):
-    #     try:
-    #         user = User.objects.get(username=request.data['id'])
-    #         return JsonResponse({'err_msg': 'username exists'}, status=status.HTTP_400_BAD_REQUEST)
-    #     except User.DoesNotExist:
-    #         user = User.objects.create_user(username=request.data['id'], password=request.data['password'])
-    #         profile = models.Profile(user=user, nickname=request.data['nickname'])            
-    #         user.save()
-    #         profile.save()
-    #         token = Token.objects.create(user=user)
-    #         return Response({"Token": token.key, "user_id": user.id})
-    
     # def update():
 
     # def delete():
