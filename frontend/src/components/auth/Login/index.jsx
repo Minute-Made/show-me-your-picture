@@ -55,7 +55,7 @@ function Login() {
     // if(userStates != "none"){
     if(userToken){
       history({
-        pathname: "/main"
+        pathname: "/home"
       })
     }
   }, [userStates])

@@ -15,17 +15,17 @@ function Splash() {
   const [ userStates, setUserStates ] = useRecoilState(userState);
   console.log(userStates)
   const logout = async () => {
-    await axios({
-      method: "post",
-      url: "http://localhost:8000/accounts/rest-auth/logout/",
-      withCredentials: true,
-    })
-      .then((res) => {
-        console.log(res);
+    // await axios({
+    //   method: "post",
+    //   url: "http://localhost:8000/accounts/rest-auth/logout/",
+    //   withCredentials: true,
+    // })
+    //   .then((res) => {
+        // console.log(res);
         localStorage.removeItem("UserId");
         setUserStates(() => "none")
         history({pathname: "/"});
-      })
+      // })
   };
   return(
     <>
@@ -36,9 +36,9 @@ function Splash() {
 
           {/* <Link  style={{color: 'inherit', textDecoration: 'none' }} to="auth/signup"><S.Button2 style={{width: '270px'}}>회원가입</S.Button2></Link> */}
           
-          {/* <S.Button1 onClick={logout} type="button">
+          <S.Button1 onClick={logout} type="button">
               Log Out
-          </S.Button1> */}
+          </S.Button1>
           <img style={{width: "100%", position: "absolute", bottom: "0", maxWidth:"375px"}}src={footerbg}/>
       </T.Container>
 
