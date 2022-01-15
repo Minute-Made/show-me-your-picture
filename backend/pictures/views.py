@@ -1,9 +1,10 @@
-from email.mime import image
 from .serializers import PublicPictureSerializer, PrivatePictureSerializer
 from .models import Picture, PicturePrivacy, User
 from rest_framework.views import APIView
 from django.http import JsonResponse
 from rest_framework.response import Response
+
+json_dumps_params = {'ensure_ascii':False}
 
 class PicturesView(APIView):
     def get(self, request, id):
@@ -19,7 +20,7 @@ class PicturesView(APIView):
             private_pictures = Picture.objects.filter(user=user).exclude(exchange_user=request.user)
         public_serializer = PublicPictureSerializer(public_pictures, many=True)
         private_serializer = PrivatePictureSerializer(private_pictures, many=True)
-        return JsonResponse(public_serializer.data + private_serializer.data, safe=False)
+        return JsonResponse(public_serializer.data + private_serializer.data, safe=False, json_dumps_params=json_dumps_params)
 
     def post(self, request, id):
         user = User.objects.get(id=id)
