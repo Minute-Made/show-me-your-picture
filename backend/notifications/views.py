@@ -52,8 +52,11 @@ class NotificationView(APIView):
         
         notification = Notification.objects.create(user=user, my_pic_num=my_pic_num, requestor_pic=requestor_pic)
         notification.save()
-
-    # def put(self, request, id, ):
+#notificatin id put 요청
+    def put(self, request, id):
+        selected_notification = Notification.objects.get(id=id)
+        selected_notification.check_status =True
+        return Response("Status Updated!", status=200)
 
 
 #delete 요청 notification id 실어서
