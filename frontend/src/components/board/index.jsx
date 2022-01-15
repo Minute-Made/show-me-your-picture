@@ -14,7 +14,6 @@ import ExBoard from "./ExBoard";
 import config from "../../config/config.js"
 
 function Home() {
-
   const params = useParams();
   const [nickname, setNick] = useState(false);
   const [gender, setGender] = useState(false);
@@ -32,7 +31,6 @@ function Home() {
   useEffect(async() => {
     await getProfile();
 }, []);
-
 
   const [open, setOpen] = useState(false);
   const [openBG, setOpenBG] = useState(false);
@@ -57,8 +55,9 @@ function Home() {
   return (
     <div style={{ diplay: "relative" }}>
       <S.BlackBG openBG={openBG}></S.BlackBG>
-      {plusModal && <AddModal  params={params}></AddModal>}
-      
+
+      {plusModal && <AddModal params={params}></AddModal>}
+
       <MenuModal open={open}></MenuModal>
       <div
         style={{
@@ -80,7 +79,6 @@ function Home() {
         </div>
         <S.TitleWrapper>
           <S.Title>{nickname}님의 흑역사진첩</S.Title>     
-
           <S.Info>{description}</S.Info>
         </S.TitleWrapper>
       </S.TitleContainer>
@@ -93,16 +91,15 @@ function Home() {
         </S.ExTab>
       </S.TabWrapper>
 
-      {tab == "myBoard" && <MyBoard params={params}/>}
+      {tab == "myBoard" && <MyBoard params={params} />}
       {tab != "myBoard" && <ExBoard params={params} />}
-      {tab == "myBoard" && (      
-      <S.FixedAlign plusModal={plusModal}>
-
-        <S.PlusButton onClick={plusToggle} plusModal={plusModal}>
-          <i className="fas fa-plus"></i>
-        </S.PlusButton>
-      </S.FixedAlign>)}
-
+      {tab == "myBoard" && (
+        <S.FixedAlign plusModal={plusModal}>
+          <S.PlusButton onClick={plusToggle} plusModal={plusModal}>
+            <i className="fas fa-plus"></i>
+          </S.PlusButton>
+        </S.FixedAlign>
+      )}
     </div>
   );
 }
