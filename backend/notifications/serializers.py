@@ -6,12 +6,13 @@ class NotificationSerializer(serializers.ModelSerializer):
     requestee_nickname = serializers.SerializerMethodField()
     requestor_pic_title = serializers.SerializerMethodField()
     requestor_pic_desc = serializers.SerializerMethodField()
-    requestor_pic_author = serializers.SerializerMethodField()
+    requestor_nickname = serializers.SerializerMethodField()
+
 
     class Meta:
         model = Notification
-        fields = ('id', 'requestee', 'requestor_pic', 'requestee_nickname', 'requestor_pic_title', 'requestor_pic_desc', 'requestor_pic_author',
-         'requestee_pic_id', 'check_status')
+        fields = ('id', 'requestee', 'requestor_pic', 'requestee_nickname', 'requestor_pic_title', 'requestor_pic_desc',
+         'requestee_pic_id', 'requestor_nickname', 'check_status')
     
     def get_requestee_nickname(self, obj):
         return obj.requestee.profile.nickname
@@ -22,5 +23,6 @@ class NotificationSerializer(serializers.ModelSerializer):
     def get_requestor_pic_desc(self, obj):
         return obj.requestor_pic.description
     
-    def get_requestor_pic_author(self, obj):
-        return obj.requestor_pic.author
+    def get_requestor_nickname(self, obj):
+        return obj.requestor_pic.user.profile.nickname
+    
