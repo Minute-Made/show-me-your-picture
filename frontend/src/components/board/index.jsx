@@ -11,11 +11,31 @@ import MyBoard from "./MyBoard/index";
 // import { useUser } from "../../../hooks/useUser";
 import { userState } from "../../atoms/atoms.js";
 import ExBoard from "./ExBoard";
+import config from "../../config/config.js"
 
-function Home() {
-
+function Home() {  
+  const history = useNavigate();
   const params = useParams();
+
+  //   console.dir(params.userPk)
+//   const userToken = localStorage.getItem("UserId");
+
+  const [nickname, setNick] = useState(false);
+  const [gender, setGender] = useState(false);
+  const [description, setDesc] = useState(false);
 //   console.dir(params.userPk)
+  const getProfile = async () =>  {
+    await axios.get( config.BASE_URL+ "/accounts/" + params.userPk)
+  .then((res)=> {
+    console.log(res.data)
+    setNick(res.data.nickname)
+    setGender(res.data.gender)
+    setDesc(res.data.description)
+  })
+  }
+  useEffect(async() => {
+    await getProfile();
+}, []);
 
   const [open, setOpen] = useState(false);
   const [openBG, setOpenBG] = useState(false);
@@ -36,19 +56,34 @@ function Home() {
     setPlusModal(!plusModal);
     setOpenBG(!openBG);
   };
-
+  const logout = async () => {
+        localStorage.removeItem("UserId");
+        history({
+          pathname: '/',
+        })
+      // })
+  };
+  // useEffect(() => {
+  //   // if(userStates != "none"){
+  //   if(userToken == null){
+  //     // console.log(user_id)
+  //     history({
+  //       pathname: '/',
+  //     })
+  //   }
+  // })
   return (
     <div style={{ diplay: "relative" }}>
       <S.BlackBG openBG={openBG}></S.BlackBG>
-      {plusModal && <AddModal  params={params}></AddModal>}
-      
+
+      {plusModal && <AddModal params={params}></AddModal>}
 
       <MenuModal open={open}></MenuModal>
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "flex-start",
+          justifyContent: "space-between",
         }}
       >
         <S.Menu onClick={onToggle} open={open}>
@@ -56,6 +91,7 @@ function Home() {
           <span></span>
           <span></span>
         </S.Menu>
+        <S.Logout onClick={logout}>Log Out</S.Logout>
       </div>
       <S.YBTOP></S.YBTOP>
       <S.TitleContainer>
@@ -63,9 +99,8 @@ function Home() {
           <img src={profImgF} style={{ width: "100%" }}></img>
         </div>
         <S.TitleWrapper>
-          <S.Title>김지성님의 흑역사진첩</S.Title>     
-
-          <S.Info>이것은 매우 간단한 한줄 소개</S.Info>
+          <S.Title>{nickname}님의 흑역사진첩</S.Title>     
+          <S.Info>{description}</S.Info>
         </S.TitleWrapper>
       </S.TitleContainer>
       <S.TabWrapper>
@@ -77,17 +112,15 @@ function Home() {
         </S.ExTab>
       </S.TabWrapper>
 
-      {tab == "myBoard" && <MyBoard params={params}/>}
+      {tab == "myBoard" && <MyBoard params={params} />}
       {tab != "myBoard" && <ExBoard params={params} />}
-      {tab == "myBoard" && (      
-      <S.FixedAlign plusModal={plusModal}>
-
-        <S.PlusButton onClick={plusToggle} plusModal={plusModal}>
-          <i className="fas fa-plus"></i>
-        </S.PlusButton>
-      </S.FixedAlign>)}
-
-
+      {tab == "myBoard" && (
+        <S.FixedAlign plusModal={plusModal}>
+          <S.PlusButton onClick={plusToggle} plusModal={plusModal}>
+            <i className="fas fa-plus"></i>
+          </S.PlusButton>
+        </S.FixedAlign>
+      )}
     </div>
   );
 }

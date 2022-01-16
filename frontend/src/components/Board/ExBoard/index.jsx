@@ -24,10 +24,9 @@ const ExBoard = (props) => {
     setIsLoading(false);
   }, []);
   if (isLoading) {
-    return <div>로딩 중</div>;
+    return <div>로딩 중...</div>;
   }
-  // const notification = "msg";
-  // const time = 15;
+
   return (
     <S.Container>
       {notif &&

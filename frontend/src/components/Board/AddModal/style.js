@@ -50,8 +50,8 @@ export const ModalBG = styled.div`
   width: 88%;
   /* margin: 0 auto; */
   display:flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   background-color: #EEEEEE;
   height:80vh;
   top:10vh;
@@ -64,6 +64,7 @@ export const ModalBG = styled.div`
 export const Title = styled.div`
         font-size: 1.2rem;
         margin-top: 20px;
+        text-align:center;
         font-family: 'NeoDunggeunmo Pro';
 `
 
