@@ -23,7 +23,6 @@ const ExBoard = (props) => {
     await getNotif();
     setIsLoading(false);
   }, []);
-
   if (isLoading) {
     return <div>로딩 중...</div>;
   }
@@ -34,8 +33,8 @@ const ExBoard = (props) => {
         notif.map((data) => {
           return (
             <S.NotifContainer>
-              <S.NotifContent>{data.requestor_nickname}님이</S.NotifContent>
-              <S.NotifTime>분 전</S.NotifTime>
+              <S.NotifContent>{data.requestee_nickname}이(가)   </S.NotifContent>
+              <S.NotifTime>15분 전</S.NotifTime>
             </S.NotifContainer>
           );
         })}
